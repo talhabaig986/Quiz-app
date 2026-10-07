@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+
+    <link rel="icon"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/graduation-cap.svg">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top, #4a2600, transparent 35%),
+                linear-gradient(135deg, #080808, #17120c);
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px 20px;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 480px;
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(245, 158, 11, 0.35);
+
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #fbbf24;
+        }
+
+        .field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 15px;
+            padding: 13px 15px;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            border-radius: 12px;
+        }
+
+        .field i {
+            color: #f59e0b;
+            font-size: 17px;
+            width: 20px;
+            text-align: center;
+        }
+
+        input,
+        select {
+            width: 100%;
+            border: none;
+            outline: none;
+
+            background: transparent;
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        input::placeholder {
+            color: #cfcfcf;
+            font-weight: normal;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        select:-webkit-autofill {
+            -webkit-text-fill-color: white;
+            -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            background: #17120c;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(135deg, #f97316, #f59e0b);
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>Create Account</h1>
+
+        <form id="signupForm">
+
+            <div class="field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="username"
+                    placeholder="Username" required>
+            </div>
+
+            <div class="field">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="email"
+                    placeholder="Email" required>
+            </div>
+
+            <div class="field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="password"
+                    placeholder="Password" required>
+            </div>
+
+            <div class="field">
+                <i class="fa-solid fa-calendar-check"></i>
+                <input type="number" id="age"
+                    placeholder="Age" required>
+            </div>
+
+            <div class="field">
+                <i class="fa-solid fa-globe"></i>
+
+                <select id="country" required>
+                    <option value="">Select Country</option>
+                    <option value="Pakistan">Pakistan</option>
+                    <option value="India">India</option>
+                    <option value="United Arab Emirates">
+                        United Arab Emirates
+                    </option>
+                    <option value="Saudi Arabia">
+                        Saudi Arabia
+                    </option>
+                    <option value="United Kingdom">
+                        United Kingdom
+                    </option>
+                    <option value="United States">
+                        United States
+                    </option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="China">China</option>
+                    <option value="Japan">Japan</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <i class="fa-solid fa-calendar-days"></i>
+                <input type="date" id="dob" required>
+            </div>
+
+            <button type="submit">
+                <i class="fa-solid fa-user-plus"></i>
+                Create Account
+            </button>
+
+        </form>
+
+    </div>
+
+    <script>
+        document.getElementById("signupForm")
+        .addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            let username =
+                document.getElementById("username").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let password =
+                document.getElementById("password").value;
+
+            let age =
+                document.getElementById("age").value;
+
+            let country =
+                document.getElementById("country").value;
+
+            let dob =
+                document.getElementById("dob").value;
+
+            let user = {
+                username: username,
+                email: email,
+                password: password,
+                age: age,
+                country: country,
+                dob: dob
+            };
+
+            let users =
+                JSON.parse(localStorage.getItem("users")) || [];
+
+            users.push(user);
+
+            localStorage.setItem(
+                "users",
+                JSON.stringify(users)
+            );
+
+            alert("Account created successfully!");
+
+            window.location.href = "login.html";
+        });
+    </script>
+
+</body>
+</html>

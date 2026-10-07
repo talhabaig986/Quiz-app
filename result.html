@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+
+    <link rel="icon"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/graduation-cap.svg">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top, #4a2600, transparent 35%),
+                linear-gradient(135deg, #080808, #17120c);
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 450px;
+            padding: 35px;
+
+            border-radius: 22px;
+
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(245, 158, 11, 0.35);
+
+            box-shadow: 0 0 40px rgba(245, 158, 11, 0.12);
+
+            text-align: center;
+        }
+
+        h1 {
+            color: #fbbf24;
+            margin-bottom: 30px;
+        }
+
+        #score,
+        #percentage {
+            font-size: 20px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        #percentage {
+            color: #f59e0b;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+
+            margin-top: 20px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: linear-gradient(135deg, #f97316, #f59e0b);
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h1>
+            <i class="fa-solid fa-trophy"></i>
+            Quiz Result
+        </h1>
+
+        <div id="score"></div>
+
+        <div id="percentage"></div>
+
+        <button id="restart">
+            <i class="fa-solid fa-rotate-right"></i>
+            Try Again
+        </button>
+
+    </div>
+
+    <script>
+        let score =
+            localStorage.getItem("score");
+
+        let total =
+            localStorage.getItem("total");
+
+        let percentage =
+            (score / total) * 100;
+
+        document.getElementById("score")
+        .innerText =
+            "Score: " +
+            score +
+            " / " +
+            total;
+
+        document.getElementById("percentage")
+        .innerText =
+            "Percentage: " +
+            percentage +
+            "% out of 100%";
+
+        document.getElementById("restart")
+        .addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    "quiz.html";
+
+            }
+        );
+    </script>
+
+</body>
+</html>
